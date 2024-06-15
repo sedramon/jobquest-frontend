@@ -1,0 +1,46 @@
+.login {
+    height: 100%;
+    background-image: url('/castle.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+    .loginForm {
+        height: 600px;
+        width: 500px;
+        background-color: #424242;
+        border: 4px solid #0178fa;
+        border-radius: 25px;
+        padding: 10px;
+        color: white;
+    }
+
+    .loginForm * {
+        font-family: 'Playwrite FR Moderne', cursive;
+    }
+
+    .loginForm button {
+        width: 250px;
+        height: 50px;
+        font-size: 16px;
+        background-color: #0178fa;
+        color: white;
+        transition: 0.3s ease;
+    }
+
+    .loginForm button:hover {
+        transform: scale(1.1);
+    }
+
+    .loginForm mat-form-field {
+        width: 300px;
+        margin: 15px 0;
+        font-size: 12px;
+    }
+
+    mat-label {
+        font-size: 12px;
+    }
+
+    
