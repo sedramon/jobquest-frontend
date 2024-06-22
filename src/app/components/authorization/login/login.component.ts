@@ -20,8 +20,4 @@ export class LoginComponent{
     this.router.navigate(['/']);
   }
 
-  redirect() {
-    this.router.navigate(['/']);
-  }
-
 }

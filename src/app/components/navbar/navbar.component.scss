@@ -14,6 +14,7 @@
 .navbar-brand {
     margin-left: 100px;
     color: white;
+    padding-top: 20px;
 }
 
 .logo {
@@ -31,6 +32,12 @@
     margin-left: 100px;
     margin-right: 25px;
     background-color: #0178fa;
+    transition: 0.3s ease;
+
+}
+
+.login:hover {
+    transform: scale(1.1);
 }
 
 .nav-link {
