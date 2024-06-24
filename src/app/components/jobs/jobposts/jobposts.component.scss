@@ -1,0 +1,33 @@
+.jobPost {
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/planks.png');
+    border: 5px solid #ff972f;
+    border-radius: 25px;
+    padding: 10px;
+    height: 300px;
+    color: rgb(245, 221, 221);
+    margin: 50px 0px;
+}
+
+.jobPostsSection {
+    height: 100%;
+    background: #424242;
+}
+
+.searchJobPosts {
+    background-color: #424242;
+    color: white;
+}
+
+.mainContent {
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #424242;
+    padding-top: 2.5%;
+}
+
+.apply-button {
+    background: #0178fa !important;
+    color: white !important;
+    width: 25%;
+}

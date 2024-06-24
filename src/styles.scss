@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use "sass:map";
+@import "styling/breakpoints.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 html, body { height: 100%; }
@@ -9,4 +11,208 @@ body { margin: 0; font-family: 'Playwrite FR Moderne', cursive; }
     src: url("app/assets/fonts/PlaywriteFRModerne-Regular.ttf") format('truetype');
     font-weight: normal;
   font-style: normal;
+}
+
+$grid-colums: (
+    "xs": (
+        "one": 1,
+        "one-two": (
+            1fr 1fr
+        ),
+        "two": 1,
+        "two-one": (
+            1fr 1fr
+        ),
+        "three": 1,
+        "four": 1,
+        "five": 1,
+        "six": 1
+    ),
+    "sm": (
+        "one": 1,
+        "one-two": (
+            1fr 1fr
+        ),
+        "two": 2,
+        "two-one": (
+            1fr 1fr
+        ),
+        "three": 1,
+        "four": 1,
+        "five": 3,
+        "six": 3
+    ),
+    "md": (
+        "one": 1,
+        "one-two": (
+            1fr 1fr
+        ),
+        "two": 2,
+        "two-one": (
+            1,
+            auto
+        ),
+        "three": 3,
+        "four": 1,
+        "five": 5,
+        "six": 3
+    ),
+    "lg": (
+        "one": 1,
+        "one-two": (
+            1fr 2fr
+        ),
+        "two": 2,
+        "two-one": (
+            1,
+            auto
+        ),
+        "three": 3,
+        "four": 4,
+        "five": 5,
+        "six": 6
+    ),
+    "xl": (
+        "one": 1,
+        "one-two": (
+            1fr 2fr
+        ),
+        "two": 2,
+        "two-one": (
+            2,
+            1fr
+        ),
+        "three": 3,
+        "four": 4,
+        "five": 5,
+        "six": 6
+    ),
+    "xxl": (
+        "one": 1,
+        "one-two": (
+            1fr 2fr
+        ),
+        "two": 2,
+        "two-one": (
+            2fr 1fr
+        ),
+        "three": 3,
+        "four": 4,
+        "five": 5,
+        "six": 6
+    )
+) !default;
+
+.grid {
+    grid-column-gap: 16px;
+    display: grid;
+    grid-auto-flow: dense;
+
+    &.column {
+        @each $name, $value in $breakpoints {
+            @include media(">#{$name}") {
+                &.one {
+                    grid-template-columns: repeat(map.get($grid-colums, $name, "one"), auto);
+                }
+                &.one-two {
+                    grid-template-columns: 1fr 2fr;
+                    // grid-template-columns: repeat(map.get($grid-colums, $name, "one-two"), auto);
+                }
+                &.one-three {
+                    grid-template-columns: 1fr 3fr;
+                }
+                &.one-four {
+                    grid-template-columns: 1fr 4fr;
+                }
+                &.one-five {
+                    grid-template-columns: 1fr 5fr;
+                }
+                &.one-six {
+                    grid-template-columns: 1fr 6fr;
+                }
+                &.two {
+                    &:not(.static) {
+                        grid-template-columns: repeat(map.get($grid-colums, $name, "two"), auto);
+                    }
+
+                    &.static {
+                        grid-template-columns: 1fr 1fr;
+                    }
+                }
+                &.two-one {
+                    @if $name == xxl {
+                        grid-template-columns: map.get($grid-colums, $name, "two-one");
+                    } @else {
+                        grid-template-columns: repeat(map.get($grid-colums, $name, "two-one"));
+                    }
+                    // grid-template-columns: 2fr 1fr;
+                }
+                &.three {
+                    &:not(.static),
+                    &:not(.first-auto) {
+                        grid-template-columns: repeat(map.get($grid-colums, $name, "three"), auto);
+                    }
+
+                    &.first-auto {
+                        grid-template-columns: auto 1fr 1fr;
+                    }
+
+                    &.static {
+                        grid-template-columns: 1fr 1fr 1fr;
+                    }
+                }
+                &.three-one {
+                    grid-template-columns: 3fr 1fr;
+                }
+                &.four {
+                    &:not(.static) {
+                        grid-template-columns: repeat(map.get($grid-colums, $name, "four"), auto);
+                    }
+
+                    &.static {
+                        grid-template-columns: 1fr 1fr 1fr 1fr;
+                    }
+                }
+                &.four-one {
+                    grid-template-columns: 3fr 1fr;
+                }
+                &.five {
+                    &:not(.static) {
+                        grid-template-columns: repeat(map.get($grid-colums, $name, "five"), auto);
+                    }
+
+                    &.static {
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                    }
+                }
+                &.six {
+                    &:not(.static) {
+                        grid-template-columns: repeat(map.get($grid-colums, $name, "six"), auto);
+                    }
+
+                    &.static {
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                    }
+                }
+                &.seven {
+                    grid-template-columns: repeat(map.get($grid-colums, $name, "seven"), auto);
+                }
+                &.eight {
+                    grid-template-columns: repeat(map.get($grid-colums, $name, "eight"), auto);
+                }
+                &.nine {
+                    grid-template-columns: repeat(map.get($grid-colums, $name, "nine"), auto);
+                }
+                &.ten {
+                    grid-template-columns: repeat(map.get($grid-colums, $name, "ten"), auto);
+                }
+                &.eleven {
+                    grid-template-columns: repeat(map.get($grid-colums, $name, "eleven"), auto);
+                }
+                &.twelve {
+                    grid-template-columns: repeat(map.get($grid-colums, $name, "twelve"), auto);
+                }
+            }
+        }
+    }
 }

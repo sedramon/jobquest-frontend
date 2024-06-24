@@ -29,6 +29,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
     MatStepperModule,
     MatExpansionModule,
     MatTabsModule,
-    MatTreeModule
+    MatTreeModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
@@ -94,7 +96,8 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
     MatStepperModule,
     MatExpansionModule,
     MatTabsModule,
-    MatTreeModule
+    MatTreeModule,
+    ReactiveFormsModule,
   ]
 })
 export class MaterialModule {
