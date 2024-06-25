@@ -23,13 +23,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatChipsModule } from '@angular/material/chips';
+import { MatChipListbox, MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -62,6 +63,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     MatTabsModule,
     MatTreeModule,
     ReactiveFormsModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatChipListbox
   ],
   providers: [
     {
@@ -98,6 +102,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     MatTabsModule,
     MatTreeModule,
     ReactiveFormsModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatChipListbox
   ]
 })
 export class MaterialModule {

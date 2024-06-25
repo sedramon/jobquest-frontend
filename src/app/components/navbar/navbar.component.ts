@@ -14,7 +14,7 @@ export class NavbarComponent {
 
   @HostListener('window:scroll', ['$event']) 
   onScroll() {
-    if(window.scrollY > 75) {
+    if(window.scrollY > 100) {
       this.navbarfixed = true;
     } else {
       this.navbarfixed = false;
