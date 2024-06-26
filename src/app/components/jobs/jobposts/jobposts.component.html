@@ -30,6 +30,7 @@
         <div>
           <p>{{ jobPost.location }}</p>
           <p>{{ truncateDescription(jobPost.description, 2) }}</p>
+          <p>Ends at : {{ jobPost.endsAt | date:'dd.MM.yyyy'}}</p>
         </div>
 
         <!-- Apply button stays at the bottom -->
