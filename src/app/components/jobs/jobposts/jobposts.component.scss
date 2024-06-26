@@ -1,9 +1,9 @@
 .jobPost {
-    width: 100%;
+    width: 80%;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/planks.png');
     border: 5px solid #ff972f;
     border-radius: 25px;
-    padding: 20px;
+    padding: 40px;
     height: 400px;
     color: rgb(245, 221, 221);
     margin: 50px 0px;
@@ -14,11 +14,14 @@
     font-family: 'Playwrite FR Moderne', cursive;
 }
 
+.jobPostDivs {
+    width: 100%;
+}
+
 .jobPostsSection {
     height: 100%;
     background: #424242;
 }
-
 
 
 .searchJobPosts {
@@ -47,7 +50,7 @@
 }
 
 .apply-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .jobPost .chips {

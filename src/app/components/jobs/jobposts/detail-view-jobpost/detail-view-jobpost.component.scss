@@ -1,0 +1,48 @@
+.jobTitle {
+    height: 25vh;
+    background-color: #424242;
+    padding: 50px;
+    color: white;
+}
+
+.jobTitleContent {
+    padding: 50px;
+    width: 80%;
+    border: 5px solid #ff972f;
+    height: 100%;
+    border-radius: 25px;
+    font-family: 'Playwrite FR Moderne', cursive;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/planks.png');
+}
+
+.jobTitleContent h2,h3 {
+    font-family: 'Playwrite FR Moderne', cursive;
+}
+
+.jobDescription {
+    height: 100%;
+    background-color: #424242;
+}
+
+.jobDescriptionContent {
+    width: 77%;
+    color: white;
+    font-family: 'Playwrite FR Moderne', cursive;
+    border: 5px solid #0178fa;
+    border-radius: 25px;
+    padding: 50px;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds container */
+    max-height: 80vh; /* Limit maximum height to 70% of viewport height */
+}
+
+.sendCVButton {
+    margin-top: 25px;
+    width: 200px;
+    color: white !important;
+    background-color: #0178fa !important;
+    transition: 0.3s ease;
+}
+
+.sendCVButton:hover {
+    transform: scale(1.05);
+}
