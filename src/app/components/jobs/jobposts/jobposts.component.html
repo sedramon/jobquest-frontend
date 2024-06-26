@@ -2,20 +2,29 @@
   <!-- SEARCH -->
   <section class="searchJobPosts">
     <div class="d-flex flex-column align-items-center">
-        <h1>Search for jobs!</h1>
+      <h1>Search for jobs!</h1>
     </div>
-
-
   </section>
+
   <!-- JOB POSTS -->
-  <section class="jobPostsSection three column grid">
-    <div *ngFor="let jobPost of jobPosts" class="jobPost">
-      <h2 style="font-size: 30px; font-weight: bold;">{{ jobPost.title }}</h2>
+  <section class="two column grid">
+    <div *ngFor="let jobPost of jobPosts" class="jobPost d-flex flex-column justify-content-between">
+      <div>
+        <h2 style="font-size: 30px; font-weight: bold;">{{ jobPost.title }}</h2>
       <h5 style="font-size: 20px;">{{ jobPost.company.companyName }}</h5>
-      <p>{{jobPost.location}}</p>
+      </div>
+      
+
+      <div>
+        <p>{{ jobPost.location }}</p>
       <p>{{ jobPost.description }}</p>
-      <mat-chip class="chips d-flex flex-row align-items-center">{{ jobPost.fieldOfWork }}</mat-chip>
-      <div class="d-flex flex-column align-items-center">
+      
+      </div>
+      
+      
+      <!-- Apply button stays at the bottom -->
+      <div class="jobPost-footer">
+        <mat-chip class="chips d-flex flex-row align-items-center">{{ jobPost.fieldOfWork }}</mat-chip> 
         <button mat-raised-button class="apply-button">Apply</button>
       </div>
     </div>
