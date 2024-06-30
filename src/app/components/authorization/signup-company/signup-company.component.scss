@@ -1,4 +1,4 @@
-.login {
+.signup {
     height: 100%;
     background-image: url('/castle.jpg');
     background-repeat: no-repeat;
@@ -6,9 +6,9 @@
 }
 
 
-    .loginForm {
-        height: 600px;
-        width: 500px;
+    .signupForm {
+        height: 800px;
+        width: 750px;
         background-color: #424242;
         border: 4px solid #0178fa;
         border-radius: 25px;
@@ -16,11 +16,11 @@
         color: white;
     }
 
-    .loginForm * {
+    .signupForm * {
         font-family: 'Playwrite FR Moderne', cursive;
     }
 
-    .loginForm button {
+    .signupForm button {
         width: 250px;
         height: 50px;
         font-size: 16px;
@@ -29,25 +29,29 @@
         transition: 0.3s ease;
     }
 
-    .loginForm button:hover {
+    .signupForm button:hover {
         transform: scale(1.1);
     }
 
-    .loginForm mat-form-field {
+    .signupForm mat-form-field {
         width: 300px;
+        height: 75px;
         margin: 15px 0;
         font-size: 12px;
+        color: white;
     }
 
-    .loginForm mat-form-field input {
+    .signupForm mat-form-field input {
         
         color: white;
     }
 
-    .loginForm mat-form-field input::placeholder {
+    .signupForm mat-form-field input::placeholder {
         
         color: white;
     }
+
+    
 
     mat-label {
         font-size: 12px;
@@ -59,3 +63,5 @@
         margin-top: 20px;
       }
     
+
+      

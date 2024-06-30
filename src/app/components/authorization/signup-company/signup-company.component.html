@@ -1,0 +1,53 @@
+<div class="signup d-flex flex-column align-items-center justify-content-center">
+    <form class="signupForm d-flex flex-column align-items-center justify-content-center" [formGroup]="signupForm">
+        <h3 class="mb-5">Sign up</h3>
+        <div class="two column grid">
+            <mat-form-field appearance="outline">
+                <mat-label>Company Name</mat-label>
+                <input matInput formControlName="companyName" type="text" placeholder="Enter your email">
+                <mat-error *ngIf="signupForm.get('companyName')?.hasError('required')">Company Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Company Address</mat-label>
+                <input matInput formControlName="companyAddress" type="text" placeholder="Enter your password">
+                <mat-error *ngIf="signupForm.get('companyAddress')?.hasError('required')">Company Address is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Company Phone</mat-label>
+                <input matInput formControlName="companyPhone" type="tel" placeholder="Enter your phone">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Activity</mat-label>
+                <input matInput formControlName="activity" type="text" placeholder="Enter your phone">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>MB</mat-label>
+                <input matInput formControlName="mb" type="text" placeholder="Enter your phone">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>PIB</mat-label>
+                <input matInput formControlName="pib" type="text" placeholder="Enter your phone">
+            </mat-form-field>
+        </div>
+        
+        <div class="two column grid">
+            <mat-form-field  appearance="outline">
+                <mat-label>Company Email</mat-label>
+                <input matInput formControlName="email" type="email" placeholder="Enter your email">
+                <mat-error *ngIf="signupForm.get('email')?.hasError('required')" class="errorMat">Email is required</mat-error>
+            </mat-form-field>
+            <mat-form-field  appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" type="password" placeholder="Enter your password">
+                <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" (click)="onSubmit()">SIGN UP</button>
+        <a routerLink="/loginCompany" class="mt-4">Already have an account?</a>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+  
+  

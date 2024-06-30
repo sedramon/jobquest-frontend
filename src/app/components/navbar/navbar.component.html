@@ -15,8 +15,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>
             </li>
-            <li>
-              <a href="/login" class="btn btn-primary login" style="width: 200px;">LOGIN</a>
+            <li class="nav-item">
+              <button mat-raised-button [matMenuTriggerFor]="loginMenu" class="btn login" style="width: 200px;">LOGIN</button>
+              <mat-menu #loginMenu="matMenu" class="loginMenu d-flex flex-column align-items-center">
+                <button mat-menu-item routerLink="/login">Login as Candidate</button>
+                <button mat-menu-item routerLink="/loginCompany">Login as Company</button>
+              </mat-menu>
             </li>
           </ul>
       </div>

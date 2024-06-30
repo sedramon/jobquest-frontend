@@ -1,0 +1,41 @@
+<div class="signup d-flex flex-column align-items-center justify-content-center">
+    <form class="signupForm d-flex flex-column align-items-center justify-content-center" [formGroup]="signupForm">
+        <h3 class="mb-5">Sign up</h3>
+        <div class="two column grid">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" type="text" placeholder="Enter your email">
+                <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" type="text" placeholder="Enter your password">
+                <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phone" type="tel" placeholder="Enter your phone">
+            </mat-form-field>
+        </div>
+        
+        <div class="two column grid">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email" placeholder="Enter your email">
+                <mat-error *ngIf="signupForm.get('email')?.hasError('required')" class="errorMat">Email is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" type="password" placeholder="Enter your password">
+                <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" (click)="onSubmit()">SIGN UP</button>
+        <a routerLink="/login" class="mt-4">Already have an account?</a>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+  
+  

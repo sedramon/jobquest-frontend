@@ -30,11 +30,11 @@
 }
 
 .login {
-    margin-left: 100px;
+    margin-left: 50px;
     margin-right: 25px;
-    background-color: #0178fa;
     transition: 0.3s ease;
-
+    font-family: 'Playwrite FR Moderne', cursive;
+    color: #0178fa;
 }
 
 .login:hover {
@@ -58,4 +58,16 @@
     width: 100px;
     color: white;
     border-radius: 25px;
+}
+
+
+::ng-deep .loginMenu {
+    margin-top: 10px !important;
+    width: 200px !important; /* Adjust this value to your preference */
+    background-color: #0178fa !important;
+    border-radius: 25px !important;
+  }
+
+::ng-deep .loginMenu button {
+    color: white !important;
 }

@@ -1,17 +1,19 @@
 <div class="login d-flex flex-column align-items-center justify-content-center">
   <form class="loginForm d-flex flex-column align-items-center justify-content-center" [formGroup]="loginForm">
       <h3 class="mb-5">Login</h3>
-      <mat-form-field class="example-full-width">
+      <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Enter your email">
+          <input matInput formControlName="email" type="email" placeholder="Enter your email">
           <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is required</mat-error>
       </mat-form-field>
-      <mat-form-field class="example-full-width mb-5">
+      <mat-form-field class="mb-4" appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput formControlName="password" type="password" placeholder="Enter your password">
           <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="onSubmit()">LOGIN</button>
+      <a *ngIf="currentRoute == 'login'" routerLink="/signup" class="mt-4">Don't have an account? Signup here</a>
+      <a *ngIf="currentRoute == 'loginCompany'" routerLink="/signupCompany" class="mt-4">Don't have an account? Signup here</a>
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
     </div>

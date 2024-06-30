@@ -13,11 +13,11 @@ export class UserService {
     constructor(private http: HttpClient){}
 
     getAllUsers(): Observable<User[]>{
-        return this.http.get<User[]>(`${this.apiUrl}/get/all`)
+        return this.http.get<User[]>(`${this.apiUrl}/get/all`);
     }
 
-    getUserByEmail(email: string): Observable<User>{
-        const params = new HttpParams().set('email', email);
+    getUserByEmail(email: string, password: string): Observable<User>{
+        const params = new HttpParams().set('email', email).set('password', password);
 
         return this.http.get<User>(`${this.apiUrl}/get/one`, { params }).pipe(
             catchError((error: HttpErrorResponse) => {
@@ -29,5 +29,9 @@ export class UserService {
                 return throwError(() => error);
             })
         );
+    }
+
+    createUser(user: User): Observable<User>{
+        return this.http.post<User>(`${this.apiUrl}/create`, user);
     }
 }
