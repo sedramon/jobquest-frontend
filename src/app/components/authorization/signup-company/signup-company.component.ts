@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../../app.material.module';
 import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CompanyService } from '../../../services/company.service';
 
 @Component({
   selector: 'app-signup-company',
@@ -17,7 +18,8 @@ export class SignupCompanyComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private companyService: CompanyService
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +39,20 @@ export class SignupCompanyComponent implements OnInit {
     if(this.signupForm.valid){
       const company = this.signupForm.value;
 
-      console.log('Company created:', company.companyName);
-      this.router.navigate(['/loginCompany']);
+      this.companyService.createCompany(company).subscribe(
+        (company) => {
+          console.log('Company created:', company.companyName);
+          this.router.navigate(['/loginCompany']);
+        },
+        (error) => {
+          console.error('Error:', error);
+          if (error.status === 409) {
+            this.errorMessage = 'Company with that email already exists';
+          } else {
+            this.errorMessage = 'An unexpected error occured';
+          }
+        }
+      );
     } else {
       this.errorMessage = 'Please fill all the fields in the right format!';
     }

@@ -15,13 +15,20 @@
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!currentUser">
               <button mat-raised-button [matMenuTriggerFor]="loginMenu" class="btn login" style="width: 200px;">LOGIN</button>
               <mat-menu #loginMenu="matMenu" class="loginMenu d-flex flex-column align-items-center">
                 <button mat-menu-item routerLink="/login">Login as Candidate</button>
                 <button mat-menu-item routerLink="/loginCompany">Login as Company</button>
               </mat-menu>
             </li>
+            <div *ngIf="currentUser" class="d-flex flex-row userDiv">
+              <div class="userEmail">
+                <h5>{{ currentUser.user.email }}</h5>
+              </div>
+              <button mat-raised-button (click)="logout()">Log out</button>
+            </div>
+            
           </ul>
       </div>
     </nav>

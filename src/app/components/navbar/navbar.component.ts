@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { MaterialModule } from '../../app.material.module';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,14 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
   navbarfixed:boolean = false;
+  currentUser = this.authService.currentUserValue;
+
+  constructor(private authService: AuthenticationService, private router: Router) {}
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']); // Redirect to login page
+  }
 
 
   @HostListener('window:scroll', ['$event']) 

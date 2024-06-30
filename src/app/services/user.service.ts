@@ -16,22 +16,27 @@ export class UserService {
         return this.http.get<User[]>(`${this.apiUrl}/get/all`);
     }
 
-    getUserByEmail(email: string, password: string): Observable<User>{
+    getUserByEmail(email: string, password: string): Observable<LoginResponse> {
         const params = new HttpParams().set('email', email).set('password', password);
-
-        return this.http.get<User>(`${this.apiUrl}/get/one`, { params }).pipe(
-            catchError((error: HttpErrorResponse) => {
-                if (error.status === 404) {
-                    console.error("User with that email does not exist.");
-                } else {
-                    console.error("An unexpected error occurred:", error.error);
-                }
-                return throwError(() => error);
-            })
+      
+        return this.http.get<LoginResponse>(`${this.apiUrl}/get/one`, { params }).pipe(
+          catchError((error: HttpErrorResponse) => {
+            if (error.status === 404) {
+              console.error("User with that email does not exist.");
+            } else {
+              console.error("An unexpected error occurred:", error.error);
+            }
+            return throwError(() => error);
+          })
         );
-    }
+      }
 
     createUser(user: User): Observable<User>{
         return this.http.post<User>(`${this.apiUrl}/create`, user);
     }
 }
+
+interface LoginResponse {
+    user: User;
+    token: string;
+  }

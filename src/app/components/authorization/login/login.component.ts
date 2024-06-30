@@ -5,6 +5,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../model/User';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CompanyService } from '../../../services/company.service';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private companyService: CompanyService,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -40,9 +44,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       if(this.currentRoute === 'login'){
         this.userService.getUserByEmail(this.loginForm.value.email, this.loginForm.value.password).subscribe(
-          (user) => {
+          (response) => {
             // Handle successful response if needed
-            console.log('User found:', user);
+            console.log('User found:', response.user.email);
+            this.authService.login(response);
             this.router.navigate(['/']);
           },
           (error) => {
@@ -57,7 +62,23 @@ export class LoginComponent implements OnInit {
           }
         );
       } else if (this.currentRoute === 'loginCompany') {
-        console.log('this is route ' + this.currentRoute);
+        this.companyService.getCompanyByEmail(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+          (company) => {
+            // Handle successful response if needed
+            console.log('Company found:', company.email);
+            this.router.navigate(['/']);
+          },
+          (error) => {
+            // Handle error response
+            console.error('Error:', error);
+            // Example: Display error message to user
+            if (error.status === 404) {
+              this.errorMessage = 'Company with that email or password does not exist';
+            } else {
+              this.errorMessage = 'An unexpected error occured';
+            }
+          }
+        );
       } 
     } else {
       this.errorMessage = 'Please fill in all fields in the correct format!';
