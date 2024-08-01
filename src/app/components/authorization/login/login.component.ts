@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
           (company) => {
             // Handle successful response if needed
             console.log('Company found:', company.email);
+            this.authService.login(company);
             this.router.navigate(['/']);
           },
           (error) => {

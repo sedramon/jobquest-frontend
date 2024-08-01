@@ -21,5 +21,5 @@
     <div class="jobDescriptionContent d-flex flex-column">
         <p  [ngStyle]="{'white-space': 'pre-wrap'}">{{ jobPost.description }}</p>
     </div>
-    <button mat-raised-button class="sendCVButton">Send CV</button>
+    <button mat-raised-button class="sendCVButton" (click)="sendApplication()">Apply Now!</button>
 </section>

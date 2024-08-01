@@ -17,6 +17,10 @@ export class NavbarComponent {
 
   constructor(private authService: AuthenticationService, private router: Router) {}
 
+  check(){
+    console.log(this.currentUser);
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/']); // Redirect to login page

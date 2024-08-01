@@ -24,7 +24,8 @@
             </li>
             <div *ngIf="currentUser" class="d-flex flex-row userDiv">
               <div class="userEmail">
-                <h5>{{ currentUser.user.email }}</h5>
+                <h5 *ngIf="currentUser.user">{{ currentUser.user.email }}</h5>
+                <h5>{{ currentUser.email }}</h5>
               </div>
               <button mat-raised-button (click)="logout()">Log out</button>
             </div>
