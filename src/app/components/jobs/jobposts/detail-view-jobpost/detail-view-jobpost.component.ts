@@ -4,10 +4,11 @@ import { MaterialModule } from '../../../../app.material.module';
 import { HttpClient } from '@angular/common/http';
 import { JobPost } from '../../../../model/JobPost';
 import { JobPostService } from '../../../../services/jobpost.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationService } from '../../../../services/application.service';
 import { ApplicationCreationData } from '../../../../model/Application';
 import { AuthenticationService } from '../../../../services/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-detail-view-jobpost',
@@ -26,7 +27,9 @@ export class DetailViewJobpostComponent implements OnInit {
     private route: ActivatedRoute,
     private datePipe: DatePipe,
     private applicationService: ApplicationService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.route.params.subscribe((params) => {
       this.jobPostId = params['id'];
@@ -34,7 +37,9 @@ export class DetailViewJobpostComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.authService.currentUserValue);
+  }
 
   getJobPostDetails(id: string): void {
     this.jobPostService.getJobPostById(id).subscribe(
@@ -53,13 +58,20 @@ export class DetailViewJobpostComponent implements OnInit {
   }
 
   sendApplication(): void {
-    let currentUser = this.authService.currentUserValue;
-    if(currentUser.user === undefined) {
-      console.log('Please login to apply for this post!')
+    if(this.authService.currentUserValue == null) {
+      const snackBarRef = this.snackBar.open('You need to log in to apply.', 'Login', {
+        duration: 2000,
+      });
+
+      const returnUrl = this.router.url;
+
+      snackBarRef.onAction().subscribe(() => {
+        this.router.navigate(['/login'], { queryParams: { returnUrl } });
+      });
     } else {
       let application: ApplicationCreationData = {
         jobPost: {id: this.jobPostId},
-        user: {id: currentUser.user.id!},
+        user: {id: this.authService.currentUserValue.user.id!},
       };
       this.applicationService.createApplication(application).subscribe(
         (response) => {

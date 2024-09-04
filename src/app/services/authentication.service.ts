@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LoginResponse } from './user.service';
+import { Company } from '../model/Company';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  private currentUserSubject: BehaviorSubject<LoginResponse | Company | null>;
+  public currentUser: Observable<LoginResponse | Company | null>;
 
   constructor() {
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser') ?? 'null'));

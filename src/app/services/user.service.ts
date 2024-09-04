@@ -36,7 +36,7 @@ export class UserService {
     }
 }
 
-interface LoginResponse {
+export interface LoginResponse {
     user: User;
     token: string;
   }

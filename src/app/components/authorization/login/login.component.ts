@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string | null = null;
   currentRoute: string = '';
+  returnUrl: string = '/';
 
   constructor(
     private router: Router,
@@ -35,8 +36,12 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
     this.activatedRoute.url.subscribe(url => {
-      const path = url[0]?.path; // Assuming it's a direct route, adjust if it's nested
-      this.currentRoute = path; // Assign the extracted segment to the variable
+      const path = url[0]?.path;
+      this.currentRoute = path;
+    });
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.returnUrl = params['returnUrl'] || '/';
     });
   }
 
@@ -48,7 +53,7 @@ export class LoginComponent implements OnInit {
             // Handle successful response if needed
             console.log('User found:', response.user.email);
             this.authService.login(response);
-            this.router.navigate(['/']);
+            this.router.navigate([this.returnUrl]);
           },
           (error) => {
             // Handle error response
