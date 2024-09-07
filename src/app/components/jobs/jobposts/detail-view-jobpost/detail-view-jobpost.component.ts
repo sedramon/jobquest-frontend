@@ -21,6 +21,8 @@ export class DetailViewJobpostComponent implements OnInit {
   jobPost!: JobPost;
   jobPostId!: string;
 
+  alreadyApplied: boolean = false;
+
   constructor(
     private http: HttpClient,
     private jobPostService: JobPostService,
@@ -39,6 +41,15 @@ export class DetailViewJobpostComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.authService.currentUserValue);
+    this.applicationService.getAllApplicationsByUserId(this.authService.currentUserValue.user.id!).subscribe((applications) => {
+      console.log(applications)
+      applications.forEach((application) => {
+        if(application.jobPost.id == this.jobPostId) {
+          this.alreadyApplied = true;
+        }
+      })
+      console.log(this.alreadyApplied)
+    })
   }
 
   getJobPostDetails(id: string): void {
@@ -75,9 +86,16 @@ export class DetailViewJobpostComponent implements OnInit {
       };
       this.applicationService.createApplication(application).subscribe(
         (response) => {
-          console.log('Application sent:', response);
+          // Show success snackbar
+          this.snackBar.open('Application sent successfully!', 'Close', {
+            duration: 3000, // Display duration for 3 seconds
+          });
         },
         (error) => {
+          // Handle error and show an error snackbar
+          this.snackBar.open('Error sending application. Please try again.', 'Close', {
+            duration: 3000,
+          });
           console.error('Error sending application:', error);
         }
       );

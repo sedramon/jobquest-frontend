@@ -43,6 +43,14 @@
     transition: 0.3s ease;
 }
 
+
+.sendCVButton:disabled {
+    background-color: #cccccc !important; /* A light grey color for disabled state */
+    color: #888888 !important; /* A grey text color */
+    cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+    opacity: 0.6; /* Slightly fade out to indicate it's disabled */
+  }
+
 .sendCVButton:hover {
     transform: scale(1.05);
 }

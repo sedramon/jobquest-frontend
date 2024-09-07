@@ -21,5 +21,6 @@
     <div class="jobDescriptionContent d-flex flex-column">
         <p  [ngStyle]="{'white-space': 'pre-wrap'}">{{ jobPost.description }}</p>
     </div>
-    <button mat-raised-button class="sendCVButton" (click)="sendApplication()">Apply Now!</button>
+    <button mat-raised-button class="sendCVButton" [disabled]="alreadyApplied == true" (click)="sendApplication()">Apply Now!</button>
+    <p *ngIf="alreadyApplied" style="color: white; font-family: 'Playwrite FR Moderne', cursive; margin-top: 25px;">You have already applied for this postion!</p>
 </section>
