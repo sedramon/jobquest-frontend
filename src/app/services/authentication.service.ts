@@ -31,4 +31,14 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
+
+  isLoginResponse(user: any): user is LoginResponse {
+    return user && (user as LoginResponse).user.id !== undefined;
+  }
+  
+  // Proverava da li je korisnik tipa Company
+  isCompany(user: any): user is Company {
+    return user && (user as Company).id !== undefined;
+  }
+
 }

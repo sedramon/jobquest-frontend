@@ -36,6 +36,14 @@
     font-family: 'Playwrite FR Moderne', cursive;
 }
 
+
+.userDiv {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+
 .login:hover {
     transform: scale(1.1);
 }

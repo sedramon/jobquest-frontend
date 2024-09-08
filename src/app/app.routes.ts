@@ -8,6 +8,9 @@ import { DetailViewJobpostComponent } from './components/jobs/jobposts/detail-vi
 import { SignupComponent } from './components/authorization/signup/signup.component';
 import { SignupCompanyComponent } from './components/authorization/signup-company/signup-company.component';
 import { MyJobPostsComponent } from './components/jobs/my-job-posts/my-job-posts.component';
+import { MyDocumentsComponent } from './components/userProfile/my-documents/my-documents.component';
+import { MyApplicationsComponent } from './components/userProfile/my-applications/my-applications.component';
+import { MyProfileComponent } from './components/userProfile/my-profile/my-profile.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '', pathMatch: 'full' },
@@ -21,4 +24,7 @@ export const routes: Routes = [
     {path: 'companies', component: CompaniesComponent},
     {path: 'jobs/:id', component: DetailViewJobpostComponent},
     {path: 'myjobs', component: MyJobPostsComponent},
+    {path: 'my-documents', component: MyDocumentsComponent},
+    {path: 'my-applications', component: MyApplicationsComponent},
+    {path: 'profile', component: MyProfileComponent},
 ];

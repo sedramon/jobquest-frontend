@@ -12,8 +12,10 @@
   </section>
 
   <!-- JOB POSTS -->
-
-  <section class="two column grid" style="gap: 50px;">
+  <div *ngIf="jobPosts.length == 0" style="height: 75vh;" class="d-flex flex-column align-items-center justify-content-center">
+    <h1 style="color: white; font-family: 'Playwrite FR Moderne', cursive;">There is no data to be loaded :(</h1>
+  </div>
+  <section class="two column grid" style="gap: 50px; margin-bottom: 50px;">
     <div
       *ngFor="let jobPost of jobPosts"
       class="jobPost d-flex flex-row justify-content-between"

@@ -1,0 +1,27 @@
+<main class="mainContent d-flex flex-column align-items-center">
+    <div style="text-align: center; font-family: 'Playwrite FR Moderne', cursive; margin-bottom: 50px;">
+    <h1 style="font-family: 'Playwrite FR Moderne', cursive; margin: 50px;">My documents</h1>
+
+    <p>In order to always have your CV at hand and to fill out a job application in a few minutes, save your CV, cover letter and other documents you may need here.</p>
+
+    <p>The number of documents you can save is limited to 15, this number does not include archived CVs.</p>
+    </div>
+    
+
+    <div class="document-list-container">
+        <h2>My Documents</h2>
+        
+        <mat-list>
+          <mat-list-item *ngFor="let document of userDocuments">
+            <mat-icon matListIcon>insert_drive_file</mat-icon>
+            <div matLine>{{ document.fileName }}</div>
+            <div matLine>Uploaded on: {{ document.uploadDate | date: 'short' }}</div>
+          </mat-list-item>
+        </mat-list>
+        
+    </div>
+  <input type="file" (change)="onFileSelected($event)" hidden #fileInput />
+
+  <button mat-raised-button color="primary" (click)="fileInput.click()">Upload document</button>
+</main>
+

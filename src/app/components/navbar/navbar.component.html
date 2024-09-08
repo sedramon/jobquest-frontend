@@ -26,11 +26,27 @@
               </mat-menu>
             </li>
             <div *ngIf="currentUser" class="d-flex flex-row userDiv">
-              <div class="userEmail">
-                <h5 *ngIf="currentUser.user">{{ currentUser.user.email }}</h5>
-                <h5>{{ currentUser.email }}</h5>
-              </div>
-              <button mat-raised-button (click)="logout()">Log out</button>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>account_circle</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="goToDocuments()">
+                  <mat-icon>folder</mat-icon>
+                  My Documents
+                </button>
+                <button mat-menu-item (click)="goToApplications()">
+                  <mat-icon>assignment</mat-icon>
+                  My Applications
+                </button>
+                <button mat-menu-item (click)="goToProfile()">
+                  <mat-icon>person</mat-icon>
+                  Profile
+                </button>
+                <button mat-menu-item (click)="logout()">
+                  <mat-icon>exit_to_app</mat-icon>
+                  Logout
+                </button>
+              </mat-menu>
             </div>
             
           </ul>

@@ -32,6 +32,18 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  goToDocuments(): void {
+    this.router.navigate(['/my-documents']);
+  }
+
+  goToApplications(): void {
+    this.router.navigate(['/my-applications']);
+  }
+
+  goToProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);
