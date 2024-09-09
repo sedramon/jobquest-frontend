@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -11,25 +13,27 @@ export class FileService {
 
     constructor(private http: HttpClient){}
 
-    getAllFilesByUserId(userId: string) : Observable<File[]> {
-        return this.http.get<File[]>(`${this.apiUrl}/user-files/${userId}`);
+    getAllFilesByUserId(userId: string) : Observable<UploadedFile[]> {
+        return this.http.get<UploadedFile[]>(`${this.apiUrl}/user-files/${userId}`);
     }
 
     uploadDocument(file: File, userId: string): Observable<any> {
-        const formData: FormData = new FormData();
-        formData.append('file', file.fileName);  // Append the file
-        formData.append('userId', userId);  // Append the userId
+      const formData: FormData = new FormData();
+      formData.append('file', file);  // Use the native File object
+      formData.append('userId', userId);  // Append the userId
     
-        // Make the HTTP request to upload the file
-        return this.http.post(`${this.apiUrl}/upload`, formData, {
-          headers: new HttpHeaders({
-            'enctype': 'multipart/form-data'
-          })
-        });
-      }
+      return this.http.post(`${this.apiUrl}/upload`, formData);
+    }
+
+    downloadDocument(fileId: string): Observable<HttpResponse<Blob>> {
+      return this.http.get(`${this.apiUrl}/download/${fileId}`, {
+        observe: 'response', // This will give you access to the full response, including headers
+        responseType: 'blob'  // The response body will be of type Blob
+      });
+    }
 }
 
-export interface File {
+export interface UploadedFile  {
     fileId: string;
     fileName: string;
     uploadDate: string;

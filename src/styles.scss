@@ -13,11 +13,13 @@ html, body {
   body {
     margin: 0;
     font-family: "Playwrite FR Moderne", cursive;
+    background: #424242;
   }
   
   #app-root {
     display: flex;
     flex-direction: column;
+    background: #424242;
     min-height: 100vh; // Postavlja minimalnu visinu na 100% visine ekrana
   }
   

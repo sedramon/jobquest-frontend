@@ -1,27 +1,62 @@
 <main class="mainContent d-flex flex-column align-items-center">
-    <div style="text-align: center; font-family: 'Playwrite FR Moderne', cursive; margin-bottom: 50px;">
+  <div style="text-align: center; font-family: 'Playwrite FR Moderne', cursive; margin-bottom: 50px;">
     <h1 style="font-family: 'Playwrite FR Moderne', cursive; margin: 50px;">My documents</h1>
 
-    <p>In order to always have your CV at hand and to fill out a job application in a few minutes, save your CV, cover letter and other documents you may need here.</p>
+    <p>In order to always have your CV at hand and to fill out a job application in a few minutes, save your CV, cover
+      letter and other documents you may need here.</p>
 
     <p>The number of documents you can save is limited to 15, this number does not include archived CVs.</p>
+  </div>
+
+
+  <div class="document-list-container">
+    <h2>My Documents</h2>
+    
+    <div *ngFor="let document of userDocuments" style="color: black;" class="documentDivs">
+      <mat-icon>insert_drive_file</mat-icon>
+
+      <div class="file-info">
+        <div>{{ document.fileName }}</div>
+        <div>Uploaded on: {{ document.uploadDate | date: 'short' }}</div>
+      </div>
+      <button mat-icon-button (click)="onDownload(document.fileId)">
+        <mat-icon>cloud_download</mat-icon>
+      </button>
     </div>
+
+    <!-- <mat-list>
+      <mat-list-item *ngFor="let document of userDocuments" class="list-item-row">
+        <mat-icon matListIcon>insert_drive_file</mat-icon>
+    
+        <div class="file-info">
+          <div>{{ document.fileName }}</div>
+          <div>Uploaded on: {{ document.uploadDate | date: 'short' }}</div>
+        </div>
+    
+        <span class="spacer"></span>
+    
+        <button mat-icon-button (click)="onDownload(document.fileId)">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list> -->
     
 
-    <div class="document-list-container">
-        <h2>My Documents</h2>
-        
-        <mat-list>
-          <mat-list-item *ngFor="let document of userDocuments">
-            <mat-icon matListIcon>insert_drive_file</mat-icon>
-            <div matLine>{{ document.fileName }}</div>
-            <div matLine>Uploaded on: {{ document.uploadDate | date: 'short' }}</div>
-          </mat-list-item>
-        </mat-list>
-        
-    </div>
+  </div>
+  <!-- File upload section -->
   <input type="file" (change)="onFileSelected($event)" hidden #fileInput />
+  
+  <div class="two column grid">
+    <button mat-raised-button color="primary" (click)="fileInput.click()">Select Document</button>
+    <button mat-raised-button color="primary" (click)="onUpload()" [disabled]="!selectedFile">
+      Upload document
+    </button>
+  </div>
+  <!-- Show selected file name -->
+  <div *ngIf="selectedFileName" style="margin-top: 10px;">
+    Selected file: {{ selectedFileName }}
+  </div>
 
-  <button mat-raised-button color="primary" (click)="fileInput.click()">Upload document</button>
+  <!-- Upload button -->
+ 
 </main>
-
