@@ -5,15 +5,46 @@
     padding: 30px;
 }
 
+.backButton {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: white;
+    position: absolute; /* Absolute positioning for the left alignment */
+    left: 50px; /* Adjust this value to position it where needed */
+    top: 100px; /* Adjust the top spacing */
+    
+    mat-icon {
+      margin-right: 5px;
+    }
+  
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  
+    &:hover {
+      color: lightgray;
+    }
+  }
+  
+  .jobTitleContent {
+    position: relative; /* So the back button aligns relative to this */
+    width: 100%;
+  }
+  
 .jobTitleContent {
     padding: 50px;
     width: 80%;
     border: 5px solid #ff972f;
     height: 100%;
+    margin-top: 50px;
     border-radius: 25px;
     font-family: 'Playwrite FR Moderne', cursive;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/planks.png');
 }
+
+
 
 .jobTitleContent h2,h3 {
     font-family: 'Playwrite FR Moderne', cursive;
@@ -22,6 +53,7 @@
 .jobDescription {
     height: 100%;
     background-color: #424242;
+    margin: 50px 0px ;
 }
 
 .jobDescriptionContent {

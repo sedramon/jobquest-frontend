@@ -1,4 +1,9 @@
 <section class="jobTitle d-flex flex-column align-items-center">
+    <!-- Back Arrow Button on the Left -->
+    <div class="backButton d-flex flex-row align-items-center" style="cursor: pointer;" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Back to Job Posts</span>
+      </div>
     <div class="jobTitleContent d-flex flex-row align-items-center justify-content-between">
         <div class="d-flex flex-row">
             <div>
@@ -22,5 +27,5 @@
         <p  [ngStyle]="{'white-space': 'pre-wrap'}">{{ jobPost.description }}</p>
     </div>
     <button mat-raised-button class="sendCVButton" [disabled]="alreadyApplied == true" (click)="sendApplication()">Apply Now!</button>
-    <p *ngIf="alreadyApplied" style="color: greenyellow; font-family: 'Playwrite FR Moderne', cursive; margin-top: 25px;">You have already applied for this postion!</p>
+    <p *ngIf="alreadyApplied" style="color: greenyellow; font-family: 'Playwrite FR Moderne', cursive; margin-top: 25px;">You have applied for this postion!</p>
 </section>

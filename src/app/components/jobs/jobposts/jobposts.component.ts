@@ -33,9 +33,9 @@ export class JobpostsComponent implements OnInit{
 
 
     // Sample data for the dropdowns
-    fieldsOfWork: string[] = ['Engineering', 'Marketing', 'Finance', 'Sales'];
-    locations: string[] = ['New York', 'Los Angeles', 'Chicago', 'San Francisco'];
-    companies: string[] = ['Google', 'Amazon', 'Facebook', 'Microsoft'];
+    fieldsOfWork: string[] = ['IT', 'Marketing', 'Finance', 'Sales'];
+    locations: string[] = ['Belgrade', 'Los Angeles', 'Chicago', 'San Francisco'];
+    companies: string[] = ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Apple', 'Gigatron', 'Gevekom'];
 
     constructor(private jobPostService: JobPostService, private router: Router, private authenticationService: AuthenticationService, private applicationService: ApplicationService){}
 

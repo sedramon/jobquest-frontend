@@ -1,19 +1,25 @@
 <main class="mainContent">
   <!-- SEARCH -->
   <section class="searchJobPosts one column grid">
-    <h1>Search Job Posts</h1>
-    <div class="d-flex flex-row align-items-center">
-      <mat-form-field appearance="outline" style="flex-grow: 1; margin-right: 10px;">
-        <mat-label style="color: white;">Search Job Posts....</mat-label>
-        <input type="text" matInput [(ngModel)]="searchTerm" (input)="onFilter()" style="color: white">
-      </mat-form-field>
 
-      <!-- Filter icon button -->
-      <button mat-icon-button (click)="toggleFilters()" aria-label="Filter">
-        <mat-icon>filter_list</mat-icon>
+    <h1 style="text-align: center;">Search Job Posts</h1>
+    <mat-form-field appearance="outline" class="custom-search-field">
+      <mat-label>Search Job Posts....</mat-label>
+      <input type="text" matInput [(ngModel)]="searchTerm">
+    </mat-form-field>
+  
+    
+
+    
+    <!-- Filter button placed below the search field -->
+    <div class="filter-button-container">
+      <button mat-raised-button (click)="toggleFilters()">
+        <mat-icon>filter_list</mat-icon> Filter
       </button>
+      <button mat-raised-button (click)="onSearch()">Search</button>
     </div>
   </section>
+  
 
   <!-- FILTERS DROPDOWN -->
   <section *ngIf="showFilters" class="filters-section" style="margin-top: 10px;">
@@ -22,21 +28,21 @@
     <div class=" three column grid">
       <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Field of Work</mat-label>
-        <mat-select [(ngModel)]="fieldOfWork" (selectionChange)="onFilter()">
+        <mat-select [(ngModel)]="fieldOfWork">
           <mat-option *ngFor="let field of fieldsOfWork" [value]="field">{{ field }}</mat-option>
         </mat-select>
       </mat-form-field>
   
       <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Location</mat-label>
-        <mat-select [(ngModel)]="location" (selectionChange)="onFilter()">
+        <mat-select [(ngModel)]="location">
           <mat-option *ngFor="let loc of locations" [value]="loc">{{ loc }}</mat-option>
         </mat-select>
       </mat-form-field>
   
       <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Company</mat-label>
-        <mat-select [(ngModel)]="company" (selectionChange)="onFilter()">
+        <mat-select [(ngModel)]="company">
           <mat-option *ngFor="let company of companies" [value]="company">{{ company }}</mat-option>
         </mat-select>
       </mat-form-field>

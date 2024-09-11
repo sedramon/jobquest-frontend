@@ -14,6 +14,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class NavbarComponent implements OnInit {
   navbarfixed: boolean = false;
   currentUser: any = null;
+  currentUserName: string = '';
   isCompany: boolean = false;
 
   constructor(private authService: AuthenticationService, private router: Router, private cdr: ChangeDetectorRef) { }
@@ -24,7 +25,8 @@ export class NavbarComponent implements OnInit {
       this.currentUser = user;
       // Check if the user is a company (has a 'pib' field)
       this.isCompany = !!(this.currentUser && this.currentUser.pib);
-
+      
+      console.log(this.currentUserName);
       // Manually trigger change detection if needed
       this.cdr.detectChanges();
     });

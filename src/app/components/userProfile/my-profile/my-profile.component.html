@@ -1,1 +1,37 @@
-<p>my-profile works!</p>
+<main class="mainContent one column grid">
+    <div class="two column grid">
+        <mat-card class="bg-dark profileCard d-flex flex-column">
+            <mat-icon class="profilePicture">account_circle</mat-icon>
+        </mat-card>
+        <mat-card class="bg-dark profileCard d-flex flex-column justify-content-between">
+            <h3 style="font-family: Playwrite FR Moderne;">My Profile</h3>
+            <p *ngIf="currentUser" style="color: white;">Welcome, {{this.currentUser?.user?.firstName + ' ' + this.currentUser?.user?.lastName}}!</p>
+            <p *ngIf="currentCompanyUser" style="color: white;">Welcome, {{this.currentCompanyUser?.companyName}}!</p>
+
+        </mat-card>
+        
+    </div>
+    <mat-card class="bg-dark">
+        <h3 style="font-family: Playwrite FR Moderne;">Profile Information</h3>
+        <div class="three column grid">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput [(ngModel)]="currentUser!.user.firstName" placeholder="First Name">
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput [(ngModel)]="currentUser!.user.lastName" placeholder="Last Name">
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="currentUser!.user.email" placeholder="Email" disabled>
+              </mat-form-field>
+        </div>
+            
+            
+    
+            <button mat-raised-button color="primary" (click)="updateProfile()">Update Profile</button>
+    </mat-card>
+</main>

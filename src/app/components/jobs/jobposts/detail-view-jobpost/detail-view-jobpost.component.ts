@@ -68,6 +68,10 @@ export class DetailViewJobpostComponent implements OnInit {
     return formattedDate ?? 'Invalid date';
   }
 
+  goBack(): void {
+    this.router.navigate(['/jobs']); // Navigate to the job posts list route
+  }
+
   sendApplication(): void {
     if(this.authService.currentUserValue == null) {
       const snackBarRef = this.snackBar.open('You need to log in to apply.', 'Login', {
@@ -90,6 +94,7 @@ export class DetailViewJobpostComponent implements OnInit {
           this.snackBar.open('Application sent successfully!', 'Close', {
             duration: 3000, // Display duration for 3 seconds
           });
+          this.alreadyApplied = true;
         },
         (error) => {
           // Handle error and show an error snackbar
