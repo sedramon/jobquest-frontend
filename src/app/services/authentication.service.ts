@@ -27,6 +27,12 @@ export class AuthenticationService {
     this.currentUserSubject.next(user);
   }
 
+   // Update local storage and current user
+   updateCurrentUser(updatedUser: any): void {
+    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+    this.currentUserSubject.next(updatedUser);
+  }
+
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);

@@ -70,7 +70,8 @@ export class JobpostsComponent implements OnInit{
         jobPost.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         jobPost.company.companyName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         jobPost.location.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        jobPost.fieldOfWork.toLowerCase().includes(this.searchTerm.toLowerCase())
+        jobPost.fieldOfWork.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        jobPost.description.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
 }
 

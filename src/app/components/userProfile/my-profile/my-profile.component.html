@@ -1,37 +1,116 @@
 <main class="mainContent one column grid">
     <div class="two column grid">
         <mat-card class="bg-dark profileCard d-flex flex-column">
-            <mat-icon class="profilePicture">account_circle</mat-icon>
+         
+                <div class="profile-picture-container">
+                  <img [src]="profilePictureUrl" alt="Profile Picture" width="150" height="150">
+                </div>
+                
+                <!-- Other profile fields -->
+              <div class="d-flex flex-row justify-content-center">
+                <input type="file" (change)="onFileSelected($event)">
+                <button mat-raised-button color="primary" (click)="uploadProfilePicture()">Update Profile</button>
+
+              </div>
+        
+              
         </mat-card>
         <mat-card class="bg-dark profileCard d-flex flex-column justify-content-between">
             <h3 style="font-family: Playwrite FR Moderne;">My Profile</h3>
-            <p *ngIf="currentUser" style="color: white;">Welcome, {{this.currentUser?.user?.firstName + ' ' + this.currentUser?.user?.lastName}}!</p>
-            <p *ngIf="currentCompanyUser" style="color: white;">Welcome, {{this.currentCompanyUser?.companyName}}!</p>
+            <h3 *ngIf="currentUser" style="color: white; font-family: Playwrite FR Moderne;">Welcome, {{this.currentUser?.user?.firstName + ' ' +
+                this.currentUser?.user?.lastName}}!</h3>
+            <h3 *ngIf="currentCompanyUser" style="color: white; font-family: Playwrite FR Moderne;">Welcome, {{this.currentCompanyUser?.companyName}}!</h3>
 
         </mat-card>
-        
+
     </div>
-    <mat-card class="bg-dark">
-        <h3 style="font-family: Playwrite FR Moderne;">Profile Information</h3>
-        <div class="three column grid">
-            <mat-form-field appearance="outline">
+    <mat-card class="bg-dark profileInfo">
+        <h3 style="font-family: Playwrite FR Moderne; margin: 50px 0px;">Profile Information</h3>
+        <div class="three column grid" *ngIf="currentUser">
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>First Name</mat-label>
                 <input matInput [(ngModel)]="currentUser!.user.firstName" placeholder="First Name">
-              </mat-form-field>
-      
-              <mat-form-field appearance="outline">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Last Name</mat-label>
                 <input matInput [(ngModel)]="currentUser!.user.lastName" placeholder="Last Name">
-              </mat-form-field>
-      
-              <mat-form-field appearance="outline">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
                 <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="currentUser!.user.email" placeholder="Email" disabled>
+                <input matInput [(ngModel)]="currentUser!.user.email" placeholder="Email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Interest</mat-label>
+                <!-- Add the 'multiple' attribute to make it a multi-select -->
+                <mat-select placeholder="Select your interests" [(ngModel)]="currentUser!.user.interest" style="color: white;">
+                  <mat-option *ngFor="let interest of interests" [value]="interest">
+                    {{ interest }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Address</mat-label>
+                <input matInput [(ngModel)]="currentUser!.user.address" placeholder="Address">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="currentUser!.user.dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
         </div>
+
+        <div class="three column grid" *ngIf="currentCompanyUser">
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Company Name</mat-label>
+                <input matInput [(ngModel)]="currentCompanyUser!.companyName" placeholder="Company Name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Activity</mat-label>
+                <!-- Add the 'multiple' attribute to make it a multi-select -->
+                <mat-select placeholder="Select your activity" [(ngModel)]="currentCompanyUser!.activity" style="color: white;">
+                  <mat-option *ngFor="let interest of interests" [value]="interest">
+                    {{ interest }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="currentCompanyUser!.email" placeholder="Email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Address</mat-label>
+                <input matInput [(ngModel)]="currentCompanyUser!.companyAddress" placeholder="Address">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>MB</mat-label>
+                <input matInput [(ngModel)]="currentCompanyUser!.mb" placeholder="MB">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>PIB</mat-label>
+                <input matInput [(ngModel)]="currentCompanyUser!.pib" placeholder="PIB">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <mat-label>Phone</mat-label>
+                <input matInput [(ngModel)]="currentCompanyUser!.companyPhone" placeholder="Phone">
+            </mat-form-field>
+
             
-            
-    
-            <button mat-raised-button color="primary" (click)="updateProfile()">Update Profile</button>
+        </div>
+
+
+
+        <button mat-raised-button color="primary" style="width: 400px; background-color: #0178fa; color: white;" (click)="updateProfile()">Update Profile</button>
     </mat-card>
 </main>

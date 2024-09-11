@@ -6,6 +6,7 @@ export interface Company {
     mb: string,
     pib: string,
     email: string,
+    companyAddress: string,
     pasasword: string,
 }
 

@@ -36,4 +36,8 @@ export class CompanyService {
         return this.http.post<Company>(`${this.apiUrl}/create`, company);
     }
 
+    updateCompany(company: Company): Observable<Company> {
+        return this.http.put<Company>(`${this.apiUrl}/update`, company);
+    }
+
 }

@@ -34,6 +34,34 @@ export class UserService {
     createUser(user: User): Observable<User>{
         return this.http.post<User>(`${this.apiUrl}/create`, user);
     }
+
+    updateUser(user: User): Observable<User>{
+        return this.http.put<User>(`${this.apiUrl}/update`, user);
+    }
+
+    // Upload profile picture
+    uploadProfilePicture(file: File, userId: string): Observable<any> {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('userId', userId);
+
+      return this.http.post<any>(`${this.apiUrl}/upload-profile-picture`, formData).pipe(
+          catchError(this.handleError)
+      );
+  }
+
+  // Get profile picture
+  getProfilePicture(userId: string): Observable<Blob> {
+      return this.http.get(`${this.apiUrl}/get-profile-picture/${userId}`, { responseType: 'blob' }).pipe(
+          catchError(this.handleError)
+      );
+  }
+
+  // Error handling
+  private handleError(error: HttpErrorResponse): Observable<never> {
+      console.error("An error occurred:", error.error);
+      return throwError(() => error);
+  }
 }
 
 export interface LoginResponse {
