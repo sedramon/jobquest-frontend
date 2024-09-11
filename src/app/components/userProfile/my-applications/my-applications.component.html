@@ -1,1 +1,42 @@
-<p>my-applications works!</p>
+<main class="mainContent d-flex flex-column align-items-center">
+    <h1 style="font-family: 'Playwrite FR Moderne', cursive; margin: 75px;">My applications</h1>
+    <section class="one column grid" style="gap: 50px; margin-bottom: 50px;">
+        <div
+          *ngFor="let application of applications"
+          class="jobPost d-flex flex-row justify-content-between"
+        >
+          <div>
+            <div>
+              <div class="d-flex flex-row">
+                <i
+                  class="fa-solid fa-signs-post"
+                  style="font-size: 50px; margin-right: 20px"
+                ></i>
+                <h2 style="font-size: 30px; font-weight: bold">
+                  {{ application.jobPost.title }}
+                </h2>
+              </div>
+              <h5 style="font-size: 20px">{{ application.jobPost.company.companyName }}</h5>
+            </div>
+    
+            <div>
+              <p>{{ application.jobPost.location }}</p>
+              <p>{{ truncateDescription(application.jobPost.description, 2) }}</p>
+              <p>Ends at : {{ application.jobPost.endsAt | date:'dd.MM.yyyy'}}</p>
+              <p style="color: greenyellow;">You have applied for this position!</p>
+            </div>
+    
+            <!-- Apply button stays at the bottom -->
+            <div class="jobPost-footer">
+              <mat-chip class="chips d-flex flex-row align-items-center">{{
+                application.jobPost.fieldOfWork
+              }}</mat-chip>
+            </div>
+          </div>
+          <div>
+            <img src="/logo-placeholder-image.png" alt="" width="200px" />
+          </div>
+        </div>
+      </section>
+   
+  </main>

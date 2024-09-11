@@ -1,23 +1,58 @@
 <main class="mainContent">
   <!-- SEARCH -->
   <section class="searchJobPosts one column grid">
-    <div class="d-flex flex-column align-items-center">
-      <h1>Search for jobs!</h1>
+    <h1>Search Job Posts</h1>
+    <div class="d-flex flex-row align-items-center">
+      <mat-form-field appearance="outline" style="flex-grow: 1; margin-right: 10px;">
+        <mat-label style="color: white;">Search Job Posts....</mat-label>
+        <input type="text" matInput [(ngModel)]="searchTerm" (input)="onFilter()" style="color: white">
+      </mat-form-field>
+
+      <!-- Filter icon button -->
+      <button mat-icon-button (click)="toggleFilters()" aria-label="Filter">
+        <mat-icon>filter_list</mat-icon>
+      </button>
     </div>
-    <mat-form-field appearance="outline" style="height: 100px;">
-      <mat-label style="color: white;">Search Job Posts....</mat-label>
-      <input type="text" matInput style="color: white">
-    </mat-form-field>
-    <button mat-raised-button style="width: 500px;">Search!</button>
+  </section>
+
+  <!-- FILTERS DROPDOWN -->
+  <section *ngIf="showFilters" class="filters-section" style="margin-top: 10px;">
+    <h2>Filters</h2>
+
+    <div class=" three column grid">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Field of Work</mat-label>
+        <mat-select [(ngModel)]="fieldOfWork" (selectionChange)="onFilter()">
+          <mat-option *ngFor="let field of fieldsOfWork" [value]="field">{{ field }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Location</mat-label>
+        <mat-select [(ngModel)]="location" (selectionChange)="onFilter()">
+          <mat-option *ngFor="let loc of locations" [value]="loc">{{ loc }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Company</mat-label>
+        <mat-select [(ngModel)]="company" (selectionChange)="onFilter()">
+          <mat-option *ngFor="let company of companies" [value]="company">{{ company }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+
+    <button mat-raised-button style="width: 100%; color: white; background-color: #0178fa;" (click)="onFilter()">Apply Filters</button>
   </section>
 
   <!-- JOB POSTS -->
-  <div *ngIf="jobPosts.length == 0" style="height: 75vh;" class="d-flex flex-column align-items-center justify-content-center">
-    <h1 style="color: white; font-family: 'Playwrite FR Moderne', cursive;">There is no data to be loaded :(</h1>
+  <div *ngIf="filteredJobPosts.length == 0" style="height: 75vh;" class="d-flex flex-column align-items-center justify-content-center">
+    <h1 style="color: white; font-family: 'Playwrite FR Moderne', cursive;">There is no data to be loaded :( </h1>
   </div>
   <section class="two column grid" style="gap: 50px; margin-bottom: 50px;">
     <div
-      *ngFor="let jobPost of jobPosts"
+      *ngFor="let jobPost of filteredJobPosts"
       class="jobPost d-flex flex-row justify-content-between"
     >
       <div>
@@ -38,6 +73,7 @@
           <p>{{ jobPost.location }}</p>
           <p>{{ truncateDescription(jobPost.description, 2) }}</p>
           <p>Ends at : {{ jobPost.endsAt | date:'dd.MM.yyyy'}}</p>
+          <p *ngIf="checkIfApplied(jobPost.id)" style="color: greenyellow;">You have applied for this position!</p>
         </div>
 
         <!-- Apply button stays at the bottom -->
@@ -50,7 +86,7 @@
             class="apply-button"
             (click)="apply(jobPost.id)"
           >
-            Apply
+            Read more!
           </button>
         </div>
       </div>

@@ -22,5 +22,5 @@
         <p  [ngStyle]="{'white-space': 'pre-wrap'}">{{ jobPost.description }}</p>
     </div>
     <button mat-raised-button class="sendCVButton" [disabled]="alreadyApplied == true" (click)="sendApplication()">Apply Now!</button>
-    <p *ngIf="alreadyApplied" style="color: white; font-family: 'Playwrite FR Moderne', cursive; margin-top: 25px;">You have already applied for this postion!</p>
+    <p *ngIf="alreadyApplied" style="color: greenyellow; font-family: 'Playwrite FR Moderne', cursive; margin-top: 25px;">You have already applied for this postion!</p>
 </section>

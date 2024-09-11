@@ -12,7 +12,9 @@
   <div class="document-list-container">
     <h2>My Documents</h2>
     
+    <h2 *ngIf="userDocuments.length === 0">You have currently no documents uploaded...</h2>
     <div *ngFor="let document of userDocuments" style="color: black;" class="documentDivs">
+      
       <mat-icon>insert_drive_file</mat-icon>
 
       <div class="file-info">
@@ -23,23 +25,6 @@
         <mat-icon>cloud_download</mat-icon>
       </button>
     </div>
-
-    <!-- <mat-list>
-      <mat-list-item *ngFor="let document of userDocuments" class="list-item-row">
-        <mat-icon matListIcon>insert_drive_file</mat-icon>
-    
-        <div class="file-info">
-          <div>{{ document.fileName }}</div>
-          <div>Uploaded on: {{ document.uploadDate | date: 'short' }}</div>
-        </div>
-    
-        <span class="spacer"></span>
-    
-        <button mat-icon-button (click)="onDownload(document.fileId)">
-          <mat-icon>cloud_download</mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-list> -->
     
 
   </div>
