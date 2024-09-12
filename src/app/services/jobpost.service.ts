@@ -21,6 +21,10 @@ export class JobPostService {
         return this.http.get<JobPost>(`${this.apiUrl}/get/one`, {params});
     }
 
+    getJobPostsByCompanyId(companyId: string): Observable<JobPost[]>{
+        const params = new HttpParams().set('companyId', companyId)
+        return this.http.get<JobPost[]>(`${this.apiUrl}/${companyId}/jobposts`, {params});
+    }
 
 
 }

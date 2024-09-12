@@ -42,6 +42,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/my-applications']);
   }
 
+  goToMyJobs(): void {
+    this.router.navigate(['/myjobs']);
+  }
+
   goToProfile(): void {
     this.router.navigate(['/profile']);
   }

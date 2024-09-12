@@ -1,6 +1,7 @@
 <main class="mainContent d-flex flex-column align-items-center">
     <h1 style="font-family: 'Playwrite FR Moderne', cursive; margin: 75px;">My applications</h1>
     <section class="one column grid" style="gap: 50px; margin-bottom: 50px;">
+      <h1 *ngIf="applications.length == 0" style="font-family: 'Playwrite FR Moderne', cursive;">You haven't applied to any positions yet.</h1>
         <div
           *ngFor="let application of applications"
           class="jobPost d-flex flex-row justify-content-between"
