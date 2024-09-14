@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 
@@ -25,10 +25,31 @@ export class FileService {
       return this.http.post(`${this.apiUrl}/upload`, formData);
     }
 
+    uploadDocumentForApplication(file: File, userId: string, jobPostId: string): Observable<any> {
+      const formData: FormData = new FormData();
+      formData.append('file', file);  // Append the file to FormData
+    
+      // Create HttpParams for userId and jobPostId
+      let params = new HttpParams();
+      params = params.append('userId', userId);
+      params = params.append('jobPostId', jobPostId);
+    
+      return this.http.post(`${this.apiUrl}/upload-application-file`, formData, { params });
+    }
+    
+    
+
+    downloadApplicationDocument(userId: string, jobPostId: string): Observable<HttpResponse<Blob>> {
+      return this.http.get(`${this.apiUrl}/download/${userId}/${jobPostId}` ,{
+        observe: 'response',
+        responseType: 'blob'
+      });
+    }
+
     downloadDocument(fileId: string): Observable<HttpResponse<Blob>> {
       return this.http.get(`${this.apiUrl}/download/${fileId}`, {
-        observe: 'response', // This will give you access to the full response, including headers
-        responseType: 'blob'  // The response body will be of type Blob
+        observe: 'response',
+        responseType: 'blob'
       });
     }
 }

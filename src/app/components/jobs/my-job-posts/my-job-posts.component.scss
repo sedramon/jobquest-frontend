@@ -7,4 +7,98 @@
     height: 100%;
     margin-bottom: 100px;
 
-  }
+  
+}
+  
+
+  .jobPost {
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/planks.png');
+    border: 5px solid #ff972f;
+    border-radius: 25px;
+    padding: 40px;
+    height: 100%;
+    color: rgb(245, 221, 221);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.02);
+      }
+}
+
+.apply-button {
+  background: #ff972f !important;
+  color: white !important;
+  width: 40%;
+  margin-top: 20px;
+  transition: 0.3s ease;
+}
+
+.apply-button:hover {
+  transform: scale(1.05);
+}
+
+.jobPost h2, h5 {
+    font-family: 'Playwrite FR Moderne', cursive;
+}
+
+.jobPostDivs {
+    width: 100%;
+}
+
+.jobPostsSection {
+    height: 100%;
+    background: #424242;
+}
+
+.jobPost .chips {
+  background-color: #0178fa;
+  color: white;
+  font-size: 14px;
+  margin: 4px;
+  width: 50px;
+}
+
+.jobPostsSectionContent {
+  background-color: #212529;
+  border-radius: 25px;
+  border: 5px solid #0178fa;
+  width: 80vw;
+  min-height: 50vh;
+}
+
+.full-width * {
+  color: white;
+}
+
+.full-width input {
+  color: white
+}
+
+.full-width textarea {
+  color: white
+}
+
+
+.delete-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: red;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Scale the icon on hover */
+.delete-icon:hover {
+  transform: scale(1.2);
+  color: darkred;
+}
+
+.submitButton:disabled {
+  background-color: #424242;
+}
+
+
+

@@ -1,0 +1,100 @@
+<main class="mainContent">
+    <div class="backButton d-flex flex-row align-items-center" style="cursor: pointer;" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Back to Job Posts</span>
+      </div>
+    <section class="jobTitle d-flex flex-column align-items-center">
+        <div class="jobTitleContent d-flex flex-row align-items-center justify-content-between">
+            <div class="d-flex flex-row">
+                <div>
+                    <i class="fa-solid fa-signs-post" style="font-size: 110px; margin-right: 20px; padding-top: 10px;"></i>
+                </div>
+                <div>
+                    <h2 style="padding-bottom: 10px; font-size: 30px;">{{ jobPost.title }}</h2>
+                    <p>{{ jobPost.location }}</p>
+                    <p>Ends at: {{ jobPost.endsAt | date:'dd.MM.yyyy' }}</p>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-center">
+                <h3>{{ jobPost.company.companyName }}</h3>
+                <img src="/logo-placeholder-image.png" alt="" width="200px">
+            </div>
+        </div>
+    </section>
+    <div class="one column grid matCard1">
+        <mat-card>
+            <mat-card-header style="margin-bottom: 50px; font-family: 'Playwrite FR Moderne', cursive; font-size: 30px;">Edit Job Post</mat-card-header>
+            <mat-card-content>
+                <div class="three column grid">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Job Title</mat-label>
+                        <input matInput (input)="this.hasChanged = true" required [(ngModel)]="jobPost.title" name="title" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Field of Work</mat-label>
+                        <mat-select required [(ngModel)]="jobPost.fieldOfWork" name="fieldOfWork">
+                            <mat-option *ngFor="let field of fieldsOfWork" [value]="field">{{ field
+                                }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <!-- Location -->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Location</mat-label>
+                        <mat-select required [(ngModel)]="jobPost.location" name="location">
+                            <mat-option *ngFor="let loc of locations" [value]="loc">{{ loc }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="one column grid">
+                    <!-- Description -->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput required [(ngModel)]="jobPost.description" name="description"
+                        style="height: 300px;"></textarea>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>End Date</mat-label>
+                    <input matInput readonly [matDatepicker]="picker" required [(ngModel)]="jobPost.endsAt"
+                        name="endsAt" />
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <button class="submitButton" mat-raised-button color="primary" type="submit" (click)="updateJobPost(jobPost)" [disabled]="!hasChanged">Save Job Post</button>
+                </div>
+                
+                
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="one column grid matCard1">
+        <mat-card>
+          <mat-card-content>
+            <mat-card-header style="margin-bottom: 50px; font-family: 'Playwrite FR Moderne', cursive; font-size: 30px;">
+              Applications
+            </mat-card-header>
+            <div class="one column grid">
+                <h1 *ngIf="applications.length == 0" style="font-family: 'Playwrite FR Moderne', cursive; text-align: center; margin-top: 100px;">No applications yet! :(</h1>
+              <div *ngFor="let application of applications" class="applicationDiv">   
+                <div class="user-info">
+                  <img src="/default-profile.png" alt="/profile-picture" class="profile-img">
+                  <p class="user-name">{{ application.user.firstName }} {{ application.user.lastName }}</p>
+                </div>
+                <div class="user-details">
+                  <p><strong>Email:</strong> {{ application.user.email }}</p>
+                  <p><strong>Phone:</strong> {{ application.user.phone }}</p>
+                  <p><strong>Address:</strong> {{ application.user.address }}</p>
+                  <p><strong>Date of Birth:</strong> {{ application.user.dateOfBirth | date: 'dd.MM.yyyy' }}</p>
+                  <p *ngIf="application.user.interest"><strong>Interest:</strong> {{ application.user.interest }}</p>
+      
+                  <!-- Add a button to download the applicant's CV -->
+                  <button mat-raised-button color="primary" (click)="downloadCv(application.user.id, jobPostId)">
+                    Download CV
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
+</main>
+

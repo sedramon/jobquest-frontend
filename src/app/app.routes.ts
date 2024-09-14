@@ -11,6 +11,7 @@ import { MyJobPostsComponent } from './components/jobs/my-job-posts/my-job-posts
 import { MyDocumentsComponent } from './components/userProfile/my-documents/my-documents.component';
 import { MyApplicationsComponent } from './components/userProfile/my-applications/my-applications.component';
 import { MyProfileComponent } from './components/userProfile/my-profile/my-profile.component';
+import { DetailViewCompanyJobpostComponent } from './components/jobs/my-job-posts/detail-view-company-jobpost/detail-view-company-jobpost.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '', pathMatch: 'full' },
@@ -27,4 +28,5 @@ export const routes: Routes = [
     {path: 'my-documents', component: MyDocumentsComponent},
     {path: 'my-applications', component: MyApplicationsComponent},
     {path: 'profile', component: MyProfileComponent},
+    {path: 'myjobs/:id', component: DetailViewCompanyJobpostComponent}
 ];

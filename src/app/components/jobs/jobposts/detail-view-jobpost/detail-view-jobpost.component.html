@@ -1,31 +1,49 @@
 <section class="jobTitle d-flex flex-column align-items-center">
     <!-- Back Arrow Button on the Left -->
     <div class="backButton d-flex flex-row align-items-center" style="cursor: pointer;" (click)="goBack()">
-        <mat-icon>arrow_back</mat-icon>
-        <span>Back to Job Posts</span>
-      </div>
+      <mat-icon>arrow_back</mat-icon>
+      <span>Back to Job Posts</span>
+    </div>
     <div class="jobTitleContent d-flex flex-row align-items-center justify-content-between">
-        <div class="d-flex flex-row">
-            <div>
-                <i class="fa-solid fa-signs-post" style="font-size: 110px; margin-right: 20px; padding-top: 10px;"></i>
-            </div>
-            <div>
-                <h2 style="padding-bottom: 10px; font-size: 30px;">{{ jobPost.title }}</h2>
-            <p>{{ jobPost.location}}</p>
-            <p>Ends at : {{ jobPost.endsAt | date:'dd.MM.yyyy'}}</p>
-            </div>
-            
+      <div class="d-flex flex-row">
+        <div>
+          <i class="fa-solid fa-signs-post" style="font-size: 110px; margin-right: 20px; padding-top: 10px;"></i>
         </div>
-        <div class="d-flex flex-row align-items-center justify-content-center">
-            <h3>{{ jobPost.company.companyName }}</h3>
-            <img src="/logo-placeholder-image.png" alt="" width="200px">
+        <div>
+          <h2 style="padding-bottom: 10px; font-size: 30px;">{{ jobPost.title }}</h2>
+          <p>{{ jobPost.location }}</p>
+          <p>Ends at: {{ jobPost.endsAt | date: 'dd.MM.yyyy' }}</p>
         </div>
+      </div>
+      <div class="d-flex flex-row align-items-center justify-content-center">
+        <h3>{{ jobPost.company.companyName }}</h3>
+        <img src="/logo-placeholder-image.png" alt="" width="200px">
+      </div>
     </div>
-</section>
-<section class="jobDescription d-flex flex-column align-items-center">
+  </section>
+  
+  <section class="jobDescription d-flex flex-column align-items-center">
     <div class="jobDescriptionContent d-flex flex-column">
-        <p  [ngStyle]="{'white-space': 'pre-wrap'}">{{ jobPost.description }}</p>
+      <p [ngStyle]="{'white-space': 'pre-wrap'}">{{ jobPost.description }}</p>
     </div>
-    <button mat-raised-button class="sendCVButton" [disabled]="alreadyApplied == true" (click)="sendApplication()">Apply Now!</button>
-    <p *ngIf="alreadyApplied" style="color: greenyellow; font-family: 'Playwrite FR Moderne', cursive; margin-top: 25px;">You have applied for this postion!</p>
-</section>
+  
+    <!-- File Selection Dropdown -->
+    <mat-form-field appearance="outline" class="fileInput" *ngIf="!isCompany && !alreadyApplied">
+      <mat-label>Select a file</mat-label>
+      <mat-select (selectionChange)="onFileSelected($event.value)">
+        <mat-option *ngFor="let file of userFiles" [value]="file.fileId">
+          {{ file.fileName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <!-- Apply Button -->
+    <button *ngIf="!isCompany && !alreadyApplied" mat-raised-button (click)="sendApplication()">Apply Now!</button>
+    
+    <!-- Already Applied Message -->
+    <p *ngIf="alreadyApplied" style="color: greenyellow; margin-top: 50px; font-family: 'Playwrite FR Moderne', cursive;">You have applied for this position!</p>
+  </section>
+  
+  
+  
+  

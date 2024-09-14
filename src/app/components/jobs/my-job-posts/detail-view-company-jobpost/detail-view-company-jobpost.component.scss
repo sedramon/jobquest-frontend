@@ -1,0 +1,157 @@
+.jobTitle {
+    height: 25vh;
+    background-color: #424242;
+    color: white;
+    padding: 30px;
+}
+
+.mainContent {
+    flex: 1;                   // Obezbeđuje da glavni sadržaj zauzima raspoloživi prostor između navbar-a i footera
+    padding: 0px 200px;             // Dodaj padding za malo prostora unutar glavnog sadržaja
+    background-color: #424242;
+    color: white; // Opcionalno: postavi pozadinu da se razlikuje od footera
+    min-height: 80vh;
+    height: 100%;
+    margin-bottom: 100px;
+
+  
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: white;
+    position: absolute; /* Absolute positioning for the left alignment */
+    left: 50px; /* Adjust this value to position it where needed */
+    top: 100px; /* Adjust the top spacing */
+    
+    mat-icon {
+      margin-right: 5px;
+    }
+  
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  
+    &:hover {
+      color: lightgray;
+    }
+  }
+
+.matCard1 {
+    margin-top: 50px;
+    background-color: #212529;
+    min-height: 50vh;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.full-width * {
+    color: white;
+  }
+  
+  .full-width input {
+    color: white
+  }
+  
+  .full-width textarea {
+    color: white
+  }
+  
+
+.matCard1 * {
+    background-color: #212529;
+    
+}
+
+.jobTitleContent {
+    padding: 50px;
+    width: 100%;
+    border: 5px solid #ff972f;
+    height: 100%;
+    margin-top: 50px;
+    border-radius: 25px;
+    font-family: 'Playwrite FR Moderne', cursive;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/planks.png');
+}
+
+.jobTitleContent h2,h3 {
+    font-family: 'Playwrite FR Moderne', cursive;
+}
+
+.custom-tab-group {
+    min-height: 50vh; /* Ensure min-height for all tab groups */
+    height: 100%;
+    margin-top: 100px;
+}
+
+.jobDescription {
+    height: 100%;
+    min-height: 50vh; /* Ensure minimum height of 50vh */
+    background-color: #424242;
+    margin: 50px 0px;
+}
+
+.jobDescriptionContent {
+    width: 77%;
+    color: white;
+    // font-family: 'Playwrite FR Moderne', cursive;
+    border: 5px solid #0178fa;
+    border-radius: 25px;
+    padding: 50px;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds container */
+    max-height: 80vh; /* Limit maximum height to 80% of viewport height */
+}
+
+
+.applicationDiv {
+    border: 1px solid white;
+    margin: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #424242;
+    border-radius: 10px;
+}
+
+.profile-img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.user-name {
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: 'Playwrite FR Moderne', cursive;
+    color: white;
+}
+
+.user-details {
+    color: white;
+}
+
+.user-details strong {
+    font-family: 'Playwrite FR Moderne', cursive;
+}
+
+.user-details p {
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+mat-card-header {
+    color: white;
+    text-align: center;
+}
+

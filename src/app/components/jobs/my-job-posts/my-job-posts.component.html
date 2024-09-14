@@ -1,3 +1,105 @@
 <main class="mainContent d-flex flex-column align-items-center">
-    <h1 style="font-family: 'Playwrite FR Moderne', cursive; margin: 75px;">My Job Posts</h1>
+    <h2 style="font-family: 'Playwrite FR Moderne', cursive; margin: 75px;">My Job Posts</h2>
+
+    <!-- JOB POSTS -->
+    <mat-card class="jobPostsSectionContent">
+        <mat-tab-group [backgroundColor]="'primary'" [color]="'primary'">
+            <mat-tab label="Post List"><mat-card-content>
+                    <div *ngIf="myJobPosts.length == 0" style="height: 75vh;"
+                        class="d-flex flex-column align-items-center justify-content-center">
+                        <h1 style="color: white; font-family: 'Playwrite FR Moderne', cursive;">There is no data :(</h1>
+                    </div>
+
+                    <section class="two column grid" style="gap: 50px; margin: 50px;">
+                        <div *ngFor="let jobPost of myJobPosts" class="jobPost d-flex flex-row justify-content-between">
+                            <div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <i class="fa-solid fa-signs-post"
+                                            style="font-size: 50px; margin-right: 20px"></i>
+                                        <h2 style="font-size: 30px; font-weight: bold">{{ jobPost.title }}</h2>
+                                    </div>
+                                    <h5 style="font-size: 20px">{{ jobPost.company.companyName }}</h5>
+                                </div>
+
+                                <div>
+                                    <p>{{ jobPost.location }}</p>
+                                    <p>{{ truncateDescription(jobPost.description, 2) }}</p>
+                                    <p>Ends at: {{ jobPost.endsAt | date: 'dd.MM.yyyy' }}</p>
+                                </div>
+
+                                <!-- Apply button stays at the bottom -->
+                                <div class="jobPost-footer">
+                                    <mat-chip class="chips d-flex flex-row align-items-center">{{ jobPost.fieldOfWork
+                                        }}</mat-chip>
+                                    <button mat-raised-button (click)="goToDetail(jobPost.id)" class="apply-button">Detail View</button>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="/logo-placeholder-image.png" alt="" width="200px" />
+                            
+                            </div>
+                            <mat-icon class="delete-icon" (click)="deleteJobPost(jobPost)">delete</mat-icon>
+
+                        </div>
+                    </section>
+                </mat-card-content></mat-tab>
+            <mat-tab label="Create a new post">
+                <mat-card-content style="padding: 25px;">
+                    <h3 style="text-align: center; font-family: 'Playwrite FR Moderne', cursive;">Create a new Job Post
+                    </h3>
+                    <form (ngSubmit)="createNewJobPost()" #jobForm="ngForm" class="one column grid">
+                        <div class="three column grid">
+                            <!-- Job Title -->
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Job Title</mat-label>
+                                <input matInput required [(ngModel)]="newJob.title" name="title" />
+                            </mat-form-field>
+                            <!-- Field of Work -->
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Field of Work</mat-label>
+                                <mat-select required [(ngModel)]="newJob.fieldOfWork" name="fieldOfWork">
+                                    <mat-option *ngFor="let field of fieldsOfWork" [value]="field">{{ field
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <!-- Location -->
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Location</mat-label>
+                                <mat-select required [(ngModel)]="newJob.location" name="location">
+                                    <mat-option *ngFor="let loc of locations" [value]="loc">{{ loc }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+
+
+                        <!-- Description -->
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput required [(ngModel)]="newJob.description" name="description"
+                                style="height: 300px;"></textarea>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>End Date</mat-label>
+                            <input matInput [matDatepicker]="picker" required [(ngModel)]="newJob.endsAt"
+                                name="endsAt" />
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+
+
+                        <!-- Submit Button -->
+                        <button class="submitButton" mat-raised-button color="primary" type="submit"
+                            [disabled]="jobForm.invalid">Create Job Post</button>
+                    </form>
+                </mat-card-content>
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-card>
+
 </main>

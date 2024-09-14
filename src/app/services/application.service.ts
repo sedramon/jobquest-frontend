@@ -27,4 +27,14 @@ export class ApplicationService {
     }
     // Add your service methods here
 
+    getAllApplicationsByJobPostId(params: string): Observable<Application[]> {
+        return this.http.get<Application[]>(`${this.apiUrl}/${params}/applications/jobpost`);
+    }
+
+    createApplicationWithFile(formData: FormData): Observable<any> {
+        return this.http.post(`${this.apiUrl}/create`, formData).pipe(
+            tap(() => console.log('Application with file sent:', formData))
+        );
+    }
+
 }

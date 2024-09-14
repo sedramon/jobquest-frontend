@@ -27,6 +27,17 @@
       color: lightgray;
     }
   }
+
+  .fileInput {
+    width: 500px;
+    margin-top: 50px;
+
+    
+
+    mat-label {
+      color: white;
+    }
+  }
   
   .jobTitleContent {
     position: relative; /* So the back button aligns relative to this */

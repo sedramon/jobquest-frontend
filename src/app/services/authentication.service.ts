@@ -12,9 +12,23 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<LoginResponse | Company | null>;
   public currentUser: Observable<LoginResponse | Company | null>;
 
+  private userTypeSubject: BehaviorSubject<'login' | 'company' | null> = new BehaviorSubject<'login' | 'company' | null>(null);
+  public userType$: Observable<'login' | 'company' | null> = this.userTypeSubject.asObservable();
+
   constructor() {
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser') ?? 'null'));
     this.currentUser = this.currentUserSubject.asObservable();
+
+    // Update the userTypeSubject when the currentUserSubject changes
+    this.currentUser.subscribe(user => {
+      if (this.isLoginResponse(user)) {
+        this.userTypeSubject.next('login');
+      } else if (this.isCompany(user)) {
+        this.userTypeSubject.next('company');
+      } else {
+        this.userTypeSubject.next(null);
+      }
+    });
   }
 
   public get currentUserValue(): any {
@@ -39,12 +53,21 @@ export class AuthenticationService {
   }
 
   isLoginResponse(user: any): user is LoginResponse {
-    return user && (user as LoginResponse).user.id !== undefined;
+    return user && user.user && user.user.id !== undefined;
   }
   
-  // Proverava da li je korisnik tipa Company
   isCompany(user: any): user is Company {
-    return user && (user as Company).id !== undefined;
+    return user && user.id !== undefined;
+  }
+
+  isCurrentUserOfType(type: 'login' | 'company'): boolean {
+    const user = this.currentUserValue;
+    if (type === 'login') {
+      return this.isLoginResponse(user);
+    } else if (type === 'company') {
+      return this.isCompany(user);
+    }
+    return false;
   }
 
 }
