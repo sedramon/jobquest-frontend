@@ -1,3 +1,4 @@
+import { SafeUrl } from "@angular/platform-browser";
 import { JobPost } from "./JobPost";
 import { User } from "./User";
 
@@ -17,5 +18,6 @@ export interface ApplicationCreationData {
 export interface Application {
     id: string,
     jobPost: JobPost,
-    user: User
+    user: User,
+    profilePictureUrl: SafeUrl
 }

@@ -23,6 +23,27 @@
     padding-bottom: 10px;
 }
 
+.circular-button {
+    padding: 0;                /* Removes padding from the button */
+    border: none;              /* Removes any border from the button */
+    display: flex;             /* Aligns the image inside the button */
+    justify-content: center;   /* Centers the image horizontally */
+    align-items: center;       /* Centers the image vertically */
+    width: 50px;              /* Set the size of the button */
+    height: 50px;             /* Same height and width to make it square */
+  }
+  
+  .circular-image {
+    border-radius: 50%;        /* Makes the image circular */
+    width: 100%;               /* Ensures the image fully covers the button size */
+    height: 100%;              /* Ensures the image fully covers the button size */
+    object-fit: cover;         /* Ensures the image covers the entire circle */
+    border: 4px solid blue;    /* Optional: Adds a circular border around the image */
+  }
+  
+  
+  
+
 .navbar {
     height: 75px;
     font-family: 'Playwrite FR Moderne', cursive;

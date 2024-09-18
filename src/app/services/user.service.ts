@@ -43,9 +43,11 @@ export class UserService {
     uploadProfilePicture(file: File, userId: string): Observable<any> {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('userId', userId);
+      
+      let params = new HttpParams();
+      params = params.append('userId', userId);
 
-      return this.http.post<any>(`${this.apiUrl}/upload-profile-picture`, formData).pipe(
+      return this.http.post<any>(`${this.apiUrl}/upload-profile-picture`, formData, { params }).pipe(
           catchError(this.handleError)
       );
   }

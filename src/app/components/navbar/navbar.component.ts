@@ -3,6 +3,9 @@ import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/cor
 import { MaterialModule } from '../../app.material.module';
 import { Router, RouterModule } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { UserService } from '../../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +19,9 @@ export class NavbarComponent implements OnInit {
   currentUser: any = null;
   currentUserName: string = '';
   isCompany: boolean = false;
+  profilePictureUrl: SafeUrl | string = '/default-profile.png';
 
-  constructor(private authService: AuthenticationService, private router: Router, private cdr: ChangeDetectorRef) { }
+  constructor(private authService: AuthenticationService, private router: Router, private cdr: ChangeDetectorRef, private userService: UserService, private sanitizer: DomSanitizer, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // Subscribe to the currentUser observable from the authentication service
@@ -31,7 +35,21 @@ export class NavbarComponent implements OnInit {
       this.cdr.detectChanges();
     });
 
+    this.loadProfilePicture();
+  }
 
+  loadProfilePicture() {
+    if (this.currentUser?.user?.id) {
+      this.userService.getProfilePicture(this.currentUser.user.id).subscribe(
+        (blob: Blob) => {
+          const url = window.URL.createObjectURL(blob);
+          this.profilePictureUrl = this.sanitizer.bypassSecurityTrustUrl(url);  // Sanitize URL
+        },
+        error => {
+          this.snackBar.open('Failed to load profile picture', 'Close', { duration: 3000 });
+        }
+      );
+    }
   }
 
   goToDocuments(): void {

@@ -36,6 +36,11 @@ export class FileService {
     
       return this.http.post(`${this.apiUrl}/upload-application-file`, formData, { params });
     }
+
+    deleteFile(fileId: string): Observable<any> {
+      return this.http.delete(`${this.apiUrl}/delete/${fileId}`, { responseType: 'text' });
+    }
+    
     
     
 

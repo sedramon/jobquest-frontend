@@ -11,6 +11,8 @@ import { MaterialModule } from '../../../../app.material.module';
 import { Application } from '../../../../model/Application';
 import { FormsModule } from '@angular/forms';
 import { FileService } from '../../../../services/file.service';
+import { UserService } from '../../../../services/user.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail-view-company-jobpost',
@@ -37,7 +39,9 @@ export class DetailViewCompanyJobpostComponent implements OnInit {
     private applicationService: ApplicationService,
     private snackBar: MatSnackBar,
     private fileService: FileService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private sanitizer: DomSanitizer
   ) {
     this.route.params.subscribe((params) => {
       this.jobPostId = params['id'];
@@ -45,17 +49,41 @@ export class DetailViewCompanyJobpostComponent implements OnInit {
     });
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.applicationService.getAllApplicationsByJobPostId(this.jobPostId).subscribe(
       (applications: Application[]) => {
         this.applications = applications;
-        console.log(this.applications)
+        
+        // For each application, load the profile picture asynchronously
+        this.applications.forEach(application => {
+          this.loadProfilePicture(application.user.id, application);  // Load profile picture
+        });
       },
       (error) => {
         console.error('Error fetching applications:', error);
       }
-    )
+    );
   }
+
+  loadProfilePicture(userId: string, application: Application): void {
+    if (userId) {
+      this.userService.getProfilePicture(userId).subscribe(
+        (blob: Blob) => {
+          const url = window.URL.createObjectURL(blob);
+          application.profilePictureUrl = this.sanitizer.bypassSecurityTrustUrl(url);  // Store the sanitized URL in the application object
+        },
+        error => {
+          this.snackBar.open('Failed to load profile picture', 'Close', { duration: 3000 });
+          application.profilePictureUrl = '/default-profile.png';  // Fallback to default image
+        }
+      );
+    } else {
+      application.profilePictureUrl = '/default-profile.png';  // Fallback to default image
+    }
+  }
+  
+  
+  
 
    getJobPostDetails(id: string): void {
     this.jobPostService.getJobPostById(id).subscribe(

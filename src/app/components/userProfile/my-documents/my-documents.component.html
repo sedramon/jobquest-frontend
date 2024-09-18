@@ -24,6 +24,7 @@
       <button mat-icon-button (click)="onDownload(document.fileId)">
         <mat-icon>cloud_download</mat-icon>
       </button>
+      <button mat-icon-button (click)="deleteDocument(document.fileId)"><mat-icon>delete</mat-icon></button>
     </div>
     
 
@@ -36,6 +37,7 @@
     <button mat-raised-button color="primary" (click)="onUpload()" [disabled]="!selectedFile">
       Upload document
     </button>
+    
   </div>
   <!-- Show selected file name -->
   <div *ngIf="selectedFileName" style="margin-top: 10px;">

@@ -65,6 +65,20 @@ export class MyDocumentsComponent implements OnInit {
     }
   }
 
+  deleteDocument(fileId: string): void {
+    this.fileService.deleteFile(fileId).subscribe(() => {
+      // Update the userDocuments list by reassigning the filtered list
+      this.userDocuments = this.userDocuments.filter((file) => file.fileId !== fileId);
+  
+      // Show success snackbar
+      this.snackBar.open('File deleted successfully!', 'Close', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+    });
+  }
+
 
   onUpload(): void {
     if (this.selectedFile && this.userId) {

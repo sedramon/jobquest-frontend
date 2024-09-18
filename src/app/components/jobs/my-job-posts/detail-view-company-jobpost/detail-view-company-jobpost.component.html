@@ -75,8 +75,8 @@
                 <h1 *ngIf="applications.length == 0" style="font-family: 'Playwrite FR Moderne', cursive; text-align: center; margin-top: 100px;">No applications yet! :(</h1>
               <div *ngFor="let application of applications" class="applicationDiv">   
                 <div class="user-info">
-                  <img src="/default-profile.png" alt="/profile-picture" class="profile-img">
-                  <p class="user-name">{{ application.user.firstName }} {{ application.user.lastName }}</p>
+                    <img [src]="application.profilePictureUrl || '/default-profile.png'" alt="Profile Picture" class="profile-img">
+                    <p class="user-name">{{ application.user.firstName }} {{ application.user.lastName }}</p>
                 </div>
                 <div class="user-details">
                   <p><strong>Email:</strong> {{ application.user.email }}</p>

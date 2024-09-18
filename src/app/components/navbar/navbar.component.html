@@ -10,10 +10,10 @@
               <a class="nav-link" href="/">Advices</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/companies">Companies</a>
+              <a class="nav-link" href="/">Companies</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
+              <a class="nav-link" href="/">Contact</a>
             </li>
             <li class="nav-item" *ngIf="!currentUser">
               <button mat-raised-button [matMenuTriggerFor]="loginMenu" class="btn login" style="width: 200px;background-color: #0178fa; color: white;">LOGIN</button>
@@ -23,9 +23,8 @@
               </mat-menu>
             </li>
             <div *ngIf="currentUser" class="d-flex flex-row userDiv">
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>account_circle</mat-icon>
-                
+              <button mat-icon-button [matMenuTriggerFor]="menu" class="circular-button">
+                <img [src]="profilePictureUrl" alt="Profile Picture" class="circular-image">
               </button>
               <mat-menu #menu="matMenu">
                 <button *ngIf="!isCompany" mat-menu-item (click)="goToDocuments()">
